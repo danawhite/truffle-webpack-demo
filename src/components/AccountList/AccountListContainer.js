@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import AccountList from 'components/AccountList/AccountList'
-import SendCoin from 'components/SendCoin/SendCoin'
+import AccountList from './AccountList';
+import SendCoin from '../SendCoin/SendCoin'
 
 import MetaCoin from 'contracts/MetaCoin.sol';
-import Web3 from 'web3';
 
 
 class AccountListContainer extends Component {
@@ -13,7 +12,7 @@ class AccountListContainer extends Component {
     this.state = {
       accounts: [],
       coinbase: ''
-    }
+    };
 
     this._getAccountBalance = this._getAccountBalance.bind(this)
     this._getAccountBalances = this._getAccountBalances.bind(this)
@@ -23,7 +22,7 @@ class AccountListContainer extends Component {
     MetaCoin.setProvider(this.props.web3.currentProvider);    
   }
 
-  _getAccountBalance (account) {
+  _getAccountBalance  = (account) => {
     var meta = MetaCoin.deployed()
     return new Promise((resolve, reject) => {
       meta.getBalance.call(account, {from: account}).then(function (value) {
@@ -33,9 +32,9 @@ class AccountListContainer extends Component {
         reject()
       })
     })
-  }
+  };
 
-  _getAccountBalances () {
+  _getAccountBalances = () => {
     this.props.web3.eth.getAccounts(function (err, accs) {
       if (err != null) {
         window.alert('There was an error fetching your accounts.')

@@ -4,7 +4,7 @@ import './SendCoin.css'
 import MetaCoin from 'contracts/MetaCoin.sol';
 import Web3 from 'web3';
 
-const provider = new Web3.providers.HttpProvider('http://localhost:8545')
+const provider = new Web3.providers.HttpProvider('http://localhost:8545');
 MetaCoin.setProvider(provider);
 
 class SendCoin extends Component {
