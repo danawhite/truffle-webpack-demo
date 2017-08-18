@@ -1,30 +1,28 @@
 import React, {Component} from 'react';
-
-// const renderEvent = (event, index) => {
-//     console.log(event, index);
-//     return <div key={index}>{event.name}</div>
-// };
+import EventCard from './components/EventCard/EventCard';
 
 export default class EventsList extends Component {
     constructor(props) {
         super(props);
 
-        console.log(this)
+        this.state = {};
     }
 
     renderEvent = (event, index) => {
-        console.log(event)
+        const { handleOpenModal, accounts } = this.props;
         return (
-        <div style={{margin: 10}}>
-            <img key={index} src={`src/assets/images/chapelle/${event}`} height={320} width={240}/>
-        </div>
+            <EventCard key={index}
+                       event={event}
+                       account={accounts[index]}
+                       onOpenModal={handleOpenModal}
+            />
         )
-    }
+    };
 
     render() {
         const { events } = this.props;
         return (
-            <div style={{display: 'flex', flex: 1, flexDirection: 'row'}}>
+            <div style={{display: 'flex', flex: 1, flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'flex-start'}}>
                 {events.map((event, index) => this.renderEvent(event, index))}
             </div>
         )

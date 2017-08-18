@@ -28,6 +28,6 @@ contract MetaCoin {
 	}
 
 	function getBalance(address addr) returns(uint) {
-  	return balances[addr];
+  	    return balances[addr];
 	}
 }
